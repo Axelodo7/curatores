@@ -98,5 +98,5 @@ tools/     serve.mjs (local server), shoot.mjs (screenshots), partials.mjs (+ pa
 ## Credits
 
 - **Logo:** the Curatores hand-drawn scroll.
-- **Fonts:** Marcellus (display), EB Garamond (text) and Hanken Grotesk (interface), all under the SIL Open Font License and self-hosted.
-- **Icons:** [Lucide](https://lucide.dev), ISC License.
+- **Fonts:** Marcellus (display), EB Garamond (text) and Hanken Grotesk (interface), all under the SIL Open Font License and self-hosted. Licence texts are in `assets/licenses/OFL-*.txt`.
+- **Icons:** [Lucide](https://lucide.dev), ISC License. The licence text is in `assets/licenses/LICENSE-lucide.txt`.
