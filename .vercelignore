@@ -1,0 +1,7 @@
+# Deploy only the static site; dev tooling stays local.
+node_modules
+tools
+tests
+package.json
+package-lock.json
+.gitignore

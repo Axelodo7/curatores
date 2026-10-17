@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capitulum I: Fundamentals · Curatores</title>
+  <meta name="description" content="Your first Latin words on flashcards, the seven cases, where the words still live in English, and a fifteen-question quiz.">
+  <meta name="theme-color" content="#9c2e25">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/marcellus-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/lesson.css">
+  <link rel="stylesheet" href="assets/css/quiz.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+  <script>document.documentElement.className = 'js';</script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/progress.js" defer></script>
+  <script src="assets/js/lesson.js" defer></script>
+  <script src="assets/js/flashcards.js" defer></script>
+  <script src="assets/js/quiz-core.js" defer></script>
+  <script src="assets/js/quiz-data.js" defer></script>
+  <script src="assets/js/quiz.js" defer></script>
+</head>
+<body>
+  <!-- SPRITE:start -->
+<!-- Icons: Lucide v1.57.0 (ISC licence) -->
+<svg class="sprite" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/> <path d="m19 12-7 7-7-7"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/> <circle cx="12" cy="8" r="6"/></symbol>
+  <symbol id="i-bone" viewBox="0 0 24 24"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></symbol>
+  <symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 5v16"/> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-circle-check-big" viewBox="0 0 24 24"><path d="M21.801 10A10 10 0 1 1 17 3.335"/> <path d="m9 11 3 3L22 4"/></symbol>
+  <symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/> <path d="M22 10v6"/> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-heart-pulse" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/> <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/> <path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/> <rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+  <symbol id="i-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="3" width="5" height="18" rx="1"/> <rect x="5" y="3" width="5" height="18" rx="1"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol>
+  <symbol id="i-rotate-ccw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/> <path d="M3 3v5h5"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18"/> <path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/> <path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/> <path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/> <path d="M7 21h10"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><path d="M16 3h5v5"/> <path d="M8 3H3v5"/> <path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/> <path d="m15 9 6-6"/></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/> <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/> <path d="M5 21h14"/></symbol>
+</svg>
+<!-- SPRITE:end -->
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress-bar" aria-hidden="true"><span data-read-progress></span></div>
+
+  <header class="site-header" data-header>
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/img/logo.webp" srcset="assets/img/logo.webp 1x, assets/img/logo@2x.webp 2x" width="431" height="158" alt="Curatores, home">
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="index.html#course">Course</a>
+        <a class="site-nav__link" href="capitulum-1.html" aria-current="page">Capitulum I</a>
+        <a class="site-nav__link" href="index.html#about">About</a>
+        <a class="btn btn--primary btn--sm" href="contact.html">Join Curatores</a>
+      </nav>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu" data-menu-button>
+        <span class="menu-button__label">Menu</span>
+        <span class="menu-button__icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu hidden>
+    <nav aria-label="Menu">
+      <ol class="menu__list">
+        <li style="--i:0"><a href="index.html#course">Course <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:1"><a href="capitulum-1.html" aria-current="page">Capitulum I <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:2"><a href="index.html#about">About <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:3"><a href="contact.html">Join Curatores <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+      </ol>
+    </nav>
+    <p class="menu__note"><span lang="la">Disce, et lingua vivet.</span> Learn, and the language will live.</p>
+  </div>
+
+  <main id="main">
+    <header class="lesson-hero">
+      <div class="container lesson-hero__grid">
+        <div>
+          <nav class="crumbs" aria-label="Breadcrumb" data-load style="--d:0">
+            <ol>
+              <li><a href="index.html#course">Course</a></li>
+              <li><span aria-current="page">Capitulum I</span></li>
+            </ol>
+          </nav>
+          <p class="eyebrow lesson-hero__eyebrow" data-load style="--d:100">Fundamentals</p>
+          <h1 class="lesson-hero__title" data-split>Capitulum I</h1>
+          <p class="lesson-hero__lead" data-load style="--d:450">Your first Latin words, the cases that show what each word is doing, and where those words still live in English. A fifteen-question quiz closes the chapter.</p>
+          <ul class="lesson-hero__facts" data-load style="--d:550">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-book-open"/></svg>17 words</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-split"/></svg>7 cases</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg>24 roots</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>15 questions</li>
+          </ul>
+          <div class="lesson-hero__actions" data-load style="--d:650">
+            <a class="btn btn--primary" href="#vocabulary">Start with vocabulary <svg class="icon btn__arrow" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+          </div>
+        </div>
+
+        <aside class="progress-card card card--frame" aria-labelledby="progress-title" data-load style="--d:500">
+          <div class="progress-card__ring" data-progress-ring aria-hidden="true">
+            <span><b data-progress-count>0</b>/4</span>
+          </div>
+          <div class="progress-card__body">
+            <h2 class="progress-card__title" id="progress-title">Your progress</h2>
+            <p class="progress-card__label" data-progress-label>Not started</p>
+            <ul class="progress-card__parts">
+              <li data-progress-part="vocabulary"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Vocabulary <span class="sr-only">, <span data-progress-status>not done</span></span></li>
+              <li data-progress-part="cases"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Cases <span class="sr-only">, <span data-progress-status>not done</span></span></li>
+              <li data-progress-part="etymology"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Etymology <span class="sr-only">, <span data-progress-status>not done</span></span></li>
+              <li data-progress-part="quiz"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Quiz <span class="sr-only">, <span data-progress-status>not done</span></span></li>
+            </ul>
+            <p class="progress-card__best">Best quiz score <b data-progress-best>Not taken yet</b></p>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="container lesson">
+      <aside class="toc">
+        <nav class="toc__nav" aria-label="In this chapter">
+          <p class="toc__title">In this chapter</p>
+          <ol class="toc__list">
+            <li data-progress-part="vocabulary"><a href="#vocabulary" data-toc-link><svg class="icon" aria-hidden="true"><use href="#i-book-open"/></svg>Vocabulary<svg class="icon toc__check" aria-hidden="true"><use href="#i-check"/></svg></a></li>
+            <li data-progress-part="cases"><a href="#cases" data-toc-link><svg class="icon" aria-hidden="true"><use href="#i-split"/></svg>Cases<svg class="icon toc__check" aria-hidden="true"><use href="#i-check"/></svg></a></li>
+            <li data-progress-part="etymology"><a href="#etymology" data-toc-link><svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg>Etymology<svg class="icon toc__check" aria-hidden="true"><use href="#i-check"/></svg></a></li>
+            <li data-progress-part="quiz"><a href="#quiz" data-toc-link><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>Quiz<svg class="icon toc__check" aria-hidden="true"><use href="#i-check"/></svg></a></li>
+          </ol>
+          <div class="meter toc__meter" aria-hidden="true"><span data-progress-meter></span></div>
+        </nav>
+      </aside>
+
+      <div class="lesson__body">
+        <!-- Part 1: Vocabulary -->
+        <section class="block" id="vocabulary" aria-labelledby="vocabulary-title" data-spy>
+          <header class="block__head" data-reveal>
+            <span class="block__badge" aria-hidden="true"><svg class="icon"><use href="#i-book-open"/></svg></span>
+            <div>
+              <p class="block__kicker">Part 1 · Introduction</p>
+              <h2 class="block__title" id="vocabulary-title">Vocabulary</h2>
+              <p class="block__sub">Tap a card to flip it. Each verb is given in its <em>he, she or it</em> form, so <i lang="la">videt</i> means “he, she or it sees.”</p>
+            </div>
+          </header>
+
+          <div class="vocab card card--frame" data-flashcards data-reveal>
+            <div class="vocab__tools">
+              <div class="vocab__filters" role="group" aria-label="Show words">
+                <button class="chip" type="button" aria-pressed="true" data-filter="all">All</button>
+                <button class="chip" type="button" aria-pressed="false" data-filter="greeting">Greetings</button>
+                <button class="chip" type="button" aria-pressed="false" data-filter="noun">Nouns</button>
+                <button class="chip" type="button" aria-pressed="false" data-filter="adjective">Adjectives</button>
+                <button class="chip" type="button" aria-pressed="false" data-filter="verb">Verbs</button>
+              </div>
+              <button class="chip vocab__flip-all" type="button" data-flip-all>
+                <svg class="icon" aria-hidden="true"><use href="#i-rotate-ccw"/></svg><span data-flip-all-text>Flip all</span>
+              </button>
+            </div>
+
+            <ul class="flashcards">
+              <li data-group="greeting"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Greeting</span><span class="flashcard__word" lang="la">Salve, salvete</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Hello</span><span class="flashcard__note">to one person, to more than one</span></span></span></button></li>
+              <li data-group="greeting"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Greeting</span><span class="flashcard__word" lang="la">Vale, valete</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Goodbye</span><span class="flashcard__note">to one person, to more than one</span></span></span></button></li>
+              <li data-group="noun"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Noun</span><span class="flashcard__word" lang="la">Mater</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Mother</span><span class="flashcard__note">as in maternal</span></span></span></button></li>
+              <li data-group="noun"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Noun</span><span class="flashcard__word" lang="la">Pater</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Father</span><span class="flashcard__note">as in paternal</span></span></span></button></li>
+              <li data-group="noun"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Noun</span><span class="flashcard__word" lang="la">Puella</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Girl</span></span></span></button></li>
+              <li data-group="noun"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Noun</span><span class="flashcard__word" lang="la">Puer</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Boy</span><span class="flashcard__note">as in puerile</span></span></span></button></li>
+              <li data-group="adjective"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Adjective</span><span class="flashcard__word" lang="la">Iratus</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Angry</span><span class="flashcard__note">as in irate</span></span></span></button></li>
+              <li data-group="adjective"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Adjective</span><span class="flashcard__word" lang="la">Laetus</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Happy</span></span></span></button></li>
+              <li data-group="adjective"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Adjective</span><span class="flashcard__word" lang="la">Tristis</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Sad</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Plorat</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Cries</span><span class="flashcard__note">he, she or it cries</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Videt</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Sees</span><span class="flashcard__note">as in video</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Dormit</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Sleeps</span><span class="flashcard__note">as in dormitory</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Audit</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Hears</span><span class="flashcard__note">as in audience</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Pulsat</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Hits</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Venit</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Comes</span><span class="flashcard__note">as in advent</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Discedit</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Leaves</span><span class="flashcard__note">goes away, departs</span></span></span></button></li>
+              <li data-group="verb"><button class="flashcard" type="button" aria-pressed="false"><span class="flashcard__inner"><span class="flashcard__face flashcard__front"><span class="flashcard__type">Verb</span><span class="flashcard__word" lang="la">Ridet</span><span class="flashcard__hint">Flip</span></span><span class="flashcard__face flashcard__back" aria-hidden="true"><span class="flashcard__meaning">Laughs</span><span class="flashcard__note">as in ridiculous</span></span></span></button></li>
+            </ul>
+
+            <div class="vocab__foot">
+              <div class="meter vocab__meter" aria-hidden="true"><span data-seen-meter></span></div>
+              <p class="vocab__count"><span data-seen-count>0</span> of 17 cards seen</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Part 2: Cases -->
+        <section class="block" id="cases" aria-labelledby="cases-title" data-spy>
+          <header class="block__head" data-reveal>
+            <span class="block__badge" aria-hidden="true"><svg class="icon"><use href="#i-split"/></svg></span>
+            <div>
+              <p class="block__kicker">Part 2 · Introduction</p>
+              <h2 class="block__title" id="cases-title">Cases</h2>
+              <p class="block__sub">A Latin noun changes its ending to show its job in the sentence. Latin has six main cases, plus a seventh, the locative, used for a handful of place names. Open each case to see <i lang="la">puella</i>, girl, at work.</p>
+            </div>
+          </header>
+
+          <div class="cases card card--frame" data-tabs data-track="cases" data-reveal>
+            <div class="cases__list" role="tablist" aria-label="Cases" aria-orientation="vertical">
+              <button class="cases__tab" type="button" role="tab" id="case-tab-nom" aria-controls="case-nom" aria-selected="true"><span>Nominative</span><span class="cases__ending">-a</span></button>
+              <button class="cases__tab" type="button" role="tab" id="case-tab-acc" aria-controls="case-acc" aria-selected="false" tabindex="-1"><span>Accusative</span><span class="cases__ending">-am</span></button>
+              <button class="cases__tab" type="button" role="tab" id="case-tab-gen" aria-controls="case-gen" aria-selected="false" tabindex="-1"><span>Genitive</span><span class="cases__ending">-ae</span></button>
+              <button class="cases__tab" type="button" role="tab" id="case-tab-dat" aria-controls="case-dat" aria-selected="false" tabindex="-1"><span>Dative</span><span class="cases__ending">-ae</span></button>
+              <button class="cases__tab" type="button" role="tab" id="case-tab-abl" aria-controls="case-abl" aria-selected="false" tabindex="-1"><span>Ablative</span><span class="cases__ending">-ā</span></button>
+              <button class="cases__tab" type="button" role="tab" id="case-tab-voc" aria-controls="case-voc" aria-selected="false" tabindex="-1"><span>Vocative</span><span class="cases__ending">-a</span></button>
+              <button class="cases__tab" type="button" role="tab" id="case-tab-loc" aria-controls="case-loc" aria-selected="false" tabindex="-1"><span>Locative</span><span class="cases__ending">rare</span></button>
+            </div>
+
+            <div class="cases__panels">
+              <div class="cases__panel" role="tabpanel" id="case-nom" aria-labelledby="case-tab-nom" tabindex="0">
+                <h3 class="cases__name">Nominative</h3>
+                <p class="cases__use">The subject of the sentence: the one doing the action.</p>
+                <p class="cases__example" lang="la">Puell<span class="end">a</span> ridet.</p>
+                <p class="cases__tr">The girl laughs.</p>
+              </div>
+              <div class="cases__panel" role="tabpanel" id="case-acc" aria-labelledby="case-tab-acc" tabindex="0">
+                <h3 class="cases__name">Accusative</h3>
+                <p class="cases__use">The direct object: the noun an action is done to.</p>
+                <p class="cases__example" lang="la">Pater puell<span class="end">am</span> videt.</p>
+                <p class="cases__tr">The father sees the girl.</p>
+              </div>
+              <div class="cases__panel" role="tabpanel" id="case-gen" aria-labelledby="case-tab-gen" tabindex="0">
+                <h3 class="cases__name">Genitive</h3>
+                <p class="cases__use">Possession: whose something is.</p>
+                <p class="cases__example" lang="la">Mater puell<span class="end">ae</span></p>
+                <p class="cases__tr">The girl’s mother</p>
+              </div>
+              <div class="cases__panel" role="tabpanel" id="case-dat" aria-labelledby="case-tab-dat" tabindex="0">
+                <h3 class="cases__name">Dative</h3>
+                <p class="cases__use">The indirect object: the noun receiving the direct object.</p>
+                <p class="cases__example" lang="la">Puer puell<span class="end">ae</span> librum dat.</p>
+                <p class="cases__tr">The boy gives the girl a book.</p>
+              </div>
+              <div class="cases__panel" role="tabpanel" id="case-abl" aria-labelledby="case-tab-abl" tabindex="0">
+                <h3 class="cases__name">Ablative</h3>
+                <p class="cases__use">Means, location or source: by, with, in or from something.</p>
+                <p class="cases__example" lang="la">Cum puell<span class="end">ā</span> venit.</p>
+                <p class="cases__tr">He comes with the girl.</p>
+              </div>
+              <div class="cases__panel" role="tabpanel" id="case-voc" aria-labelledby="case-tab-voc" tabindex="0">
+                <h3 class="cases__name">Vocative</h3>
+                <p class="cases__use">The person being spoken to.</p>
+                <p class="cases__example" lang="la">Salve, puell<span class="end">a</span>!</p>
+                <p class="cases__tr">Hello, girl!</p>
+              </div>
+              <div class="cases__panel" role="tabpanel" id="case-loc" aria-labelledby="case-tab-loc" tabindex="0">
+                <h3 class="cases__name">Locative</h3>
+                <p class="cases__use">A location, mostly for names of cities. <i lang="la">Puella</i> has no locative, so this example uses Rome.</p>
+                <p class="cases__example" lang="la">Rom<span class="end">ae</span> dormit.</p>
+                <p class="cases__tr">She sleeps in Rome.</p>
+              </div>
+            </div>
+
+            <div class="cases__forms">
+              <p class="cases__forms-title"><i lang="la">Puella</i> in every case</p>
+              <ol class="cases__strip" aria-label="Forms of puella">
+                <li data-case-form="0"><span>Nom.</span><b lang="la">puell<em>a</em></b></li>
+                <li data-case-form="1"><span>Acc.</span><b lang="la">puell<em>am</em></b></li>
+                <li data-case-form="2"><span>Gen.</span><b lang="la">puell<em>ae</em></b></li>
+                <li data-case-form="3"><span>Dat.</span><b lang="la">puell<em>ae</em></b></li>
+                <li data-case-form="4"><span>Abl.</span><b lang="la">puell<em>ā</em></b></li>
+                <li data-case-form="5"><span>Voc.</span><b lang="la">puell<em>a</em></b></li>
+                <li data-case-form="6"><span>Loc.</span><b lang="la">Rom<em>ae</em></b></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Part 3: Etymology -->
+        <section class="block" id="etymology" aria-labelledby="etymology-title" data-spy>
+          <header class="block__head" data-reveal>
+            <span class="block__badge" aria-hidden="true"><svg class="icon"><use href="#i-sprout"/></svg></span>
+            <div>
+              <p class="block__kicker">Part 3</p>
+              <h2 class="block__title" id="etymology-title">Etymology</h2>
+              <p class="block__sub">Find out how Latin is still used today. Open each field to see its Latin.</p>
+            </div>
+          </header>
+
+          <div class="etym" data-tabs data-track="etymology" data-reveal>
+            <div class="segmented" role="tablist" aria-label="Fields that use Latin">
+              <span class="segmented__thumb" aria-hidden="true" data-tab-indicator></span>
+              <button class="segmented__tab" type="button" role="tab" id="tab-medicine" aria-controls="panel-medicine" aria-selected="true"><svg class="icon" aria-hidden="true"><use href="#i-heart-pulse"/></svg>Medicine</button>
+              <button class="segmented__tab" type="button" role="tab" id="tab-law" aria-controls="panel-law" aria-selected="false" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg>Law</button>
+              <button class="segmented__tab" type="button" role="tab" id="tab-paleontology" aria-controls="panel-paleontology" aria-selected="false" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-bone"/></svg>Paleontology</button>
+            </div>
+
+            <div class="etym__panel" role="tabpanel" id="panel-medicine" aria-labelledby="tab-medicine" tabindex="0">
+              <p class="etym__intro">Doctors name the body in Latin. The part each English word shares with its root is marked in gold.</p>
+              <ul class="roots">
+                <li class="root"><p class="root__term" lang="la">Bracchium</p><p class="root__meaning">arm</p><p class="root__use"><b>brach</b>ial, <b>brac</b>elet, em<b>brac</b>e</p></li>
+                <li class="root"><p class="root__term" lang="la">Cerebrum</p><p class="root__meaning">brain</p><p class="root__use"><b>cerebr</b>al, <b>cerebr</b>ospinal</p></li>
+                <li class="root"><p class="root__term" lang="la">Manus</p><p class="root__meaning">hand</p><p class="root__use"><b>man</b>ual, <b>man</b>icure, <b>man</b>uscript</p></li>
+                <li class="root"><p class="root__term" lang="la">Oculus</p><p class="root__meaning">eye</p><p class="root__use"><b>ocul</b>ar, bin<b>ocul</b>ars</p></li>
+                <li class="root"><p class="root__term" lang="la">Cor, cordis</p><p class="root__meaning">heart</p><p class="root__use"><b>cord</b>ial, ac<b>cord</b></p></li>
+                <li class="root"><p class="root__term" lang="la">Dens, dentis</p><p class="root__meaning">tooth</p><p class="root__use"><b>dent</b>al, <b>dent</b>ist, <b>dent</b>ures</p></li>
+                <li class="root"><p class="root__term" lang="la">Pes, pedis</p><p class="root__meaning">foot</p><p class="root__use"><b>ped</b>al, <b>ped</b>estrian, <b>ped</b>icure</p></li>
+                <li class="root"><p class="root__term" lang="la">Pulmo, pulmonis</p><p class="root__meaning">lung</p><p class="root__use"><b>pulmon</b>ary</p></li>
+              </ul>
+            </div>
+
+            <div class="etym__panel" role="tabpanel" id="panel-law" aria-labelledby="tab-law" tabindex="0">
+              <p class="etym__intro">Courts still use whole Latin phrases. Each is shown with its literal meaning and how it is used today.</p>
+              <ul class="roots">
+                <li class="root"><p class="root__term" lang="la">Habeas corpus</p><p class="root__meaning">“you should have the body”</p><p class="root__use">An order to bring a detained person before a judge.</p></li>
+                <li class="root"><p class="root__term" lang="la">Subpoena</p><p class="root__meaning">“under penalty”</p><p class="root__use">An order to appear in court.</p></li>
+                <li class="root"><p class="root__term" lang="la">Pro bono</p><p class="root__meaning">“for the good”</p><p class="root__use">Legal work done without charge.</p></li>
+                <li class="root"><p class="root__term" lang="la">Bona fide</p><p class="root__meaning">“in good faith”</p><p class="root__use">Genuine, made without intent to deceive.</p></li>
+                <li class="root"><p class="root__term" lang="la">De facto</p><p class="root__meaning">“from the fact”</p><p class="root__use">True in practice, even if not official.</p></li>
+                <li class="root"><p class="root__term" lang="la">Affidavit</p><p class="root__meaning">“he has declared on oath”</p><p class="root__use">A written statement sworn to be true.</p></li>
+                <li class="root"><p class="root__term" lang="la">Alibi</p><p class="root__meaning">“elsewhere”</p><p class="root__use">Evidence that you were somewhere else.</p></li>
+                <li class="root"><p class="root__term" lang="la">Veto</p><p class="root__meaning">“I forbid”</p><p class="root__use">The power to reject a decision.</p></li>
+              </ul>
+            </div>
+
+            <div class="etym__panel" role="tabpanel" id="panel-paleontology" aria-labelledby="tab-paleontology" tabindex="0">
+              <p class="etym__intro">Fossil hunters borrow Latin for the rocks they dig and the animals they name.</p>
+              <ul class="roots">
+                <li class="root"><p class="root__term" lang="la">Fossil</p><p class="root__meaning">from <i lang="la">fossilis</i>, “dug up”</p><p class="root__use">The preserved remains of ancient life.</p></li>
+                <li class="root"><p class="root__term" lang="la">Extinct</p><p class="root__meaning">from <i lang="la">exstinctus</i>, “put out,” like a fire</p><p class="root__use">A species with no living members.</p></li>
+                <li class="root"><p class="root__term" lang="la">Stratum</p><p class="root__meaning">“a layer,” plural <i lang="la">strata</i></p><p class="root__use">One layer of rock, read like a page of time.</p></li>
+                <li class="root"><p class="root__term" lang="la">Vertebra</p><p class="root__meaning">“a joint,” from <i lang="la">vertere</i>, to turn</p><p class="root__use">One bone of the spine.</p></li>
+                <li class="root"><p class="root__term" lang="la">Tyrannosaurus rex</p><p class="root__meaning"><i lang="la">rex</i>, “king”</p><p class="root__use">The tyrant lizard king: <i>tyrannosaurus</i> is Greek, <i lang="la">rex</i> is Latin.</p></li>
+                <li class="root"><p class="root__term" lang="la">Velociraptor</p><p class="root__meaning"><i lang="la">velox</i>, “swift,” and <i lang="la">raptor</i>, “robber”</p><p class="root__use">The swift thief.</p></li>
+                <li class="root"><p class="root__term" lang="la">Spinosaurus</p><p class="root__meaning"><i lang="la">spina</i>, “spine”</p><p class="root__use">The spine lizard, named for the tall spines along its back.</p></li>
+                <li class="root"><p class="root__term" lang="la">Carnotaurus</p><p class="root__meaning"><i lang="la">caro, carnis</i>, “flesh,” and <i lang="la">taurus</i>, “bull”</p><p class="root__use">The meat-eating bull, named for the horns above its eyes.</p></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Part 4: Quiz -->
+        <section class="block" id="quiz" aria-labelledby="quiz-title" data-spy>
+          <header class="block__head" data-reveal>
+            <span class="block__badge" aria-hidden="true"><svg class="icon"><use href="#i-award"/></svg></span>
+            <div>
+              <p class="block__kicker">Part 4</p>
+              <h2 class="block__title" id="quiz-title">Quiz</h2>
+              <p class="block__sub">Test your knowledge: fifteen questions with instant feedback.</p>
+            </div>
+          </header>
+
+          <div class="quiz card card--frame" data-quiz data-reveal>
+            <noscript><p>The quiz needs JavaScript. Turn it on in your browser to take it.</p></noscript>
+          </div>
+        </section>
+
+        <nav class="lesson-next" aria-label="Chapters">
+          <a class="btn btn--ghost" href="index.html#course"><span aria-hidden="true">←</span> All chapters</a>
+          <p class="lesson-next__soon"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Next: Capitulum II <span>In preparation</span></p>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER:start -->
+<footer class="site-footer surface-night">
+  <div class="container site-footer__inner">
+    <div>
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/img/logo.webp" srcset="assets/img/logo.webp 1x, assets/img/logo@2x.webp 2x" width="431" height="158" alt="Curatores, home" loading="lazy">
+      </a>
+      <p class="motto"><span lang="la">Disce, et lingua vivet.</span> Learn, and the language will live.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <div>
+        <p class="footer-nav__title">Learn</p>
+        <ul>
+          <li><a href="index.html#course">Course</a></li>
+          <li><a href="capitulum-1.html">Capitulum I</a></li>
+          <li><a href="capitulum-1.html#quiz">Quiz</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-nav__title">Curatores</p>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Join Curatores</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p class="site-footer__legal"><span>© <span data-year>2026</span> Curatores</span><span lang="la">Lingua Latina non mortua est.</span></p>
+  </div>
+</footer>
+<!-- FOOTER:end -->
+</body>
+</html>

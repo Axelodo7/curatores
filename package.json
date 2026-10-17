@@ -1,0 +1,13 @@
+{
+  "name": "curatores",
+  "private": true,
+  "description": "Curatores: a guided introduction to Latin. Static site, no build step.",
+  "scripts": {
+    "serve": "node tools/serve.mjs",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "shoot": "node tools/shoot.mjs"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.14.0"
+  }
+}

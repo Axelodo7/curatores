@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curatores · An introduction to Latin</title>
+  <meta name="description" content="A guided introduction to Latin: its words, its grammar, and the places it still turns up in English, from medicine and law to the names of dinosaurs.">
+  <meta name="theme-color" content="#9c2e25">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/marcellus-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/eb-garamond-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/logo@2x.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="assets/css/fonts.css">
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/motion.css">
+  <script>document.documentElement.className = 'js';</script>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/progress.js" defer></script>
+  <script src="assets/js/explore.js" defer></script>
+</head>
+<body>
+  <!-- SPRITE:start -->
+<!-- Icons: Lucide v1.57.0 (ISC licence) -->
+<svg class="sprite" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/> <path d="m19 12-7 7-7-7"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/> <path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/> <circle cx="12" cy="8" r="6"/></symbol>
+  <symbol id="i-bone" viewBox="0 0 24 24"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></symbol>
+  <symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 5v16"/> <path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-circle-check-big" viewBox="0 0 24 24"><path d="M21.801 10A10 10 0 1 1 17 3.335"/> <path d="m9 11 3 3L22 4"/></symbol>
+  <symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/> <path d="M22 10v6"/> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+  <symbol id="i-heart-pulse" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/> <path d="M3.22 13H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/> <path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/> <rect x="2" y="4" width="20" height="16" rx="2"/></symbol>
+  <symbol id="i-message-square" viewBox="0 0 24 24"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="3" width="5" height="18" rx="1"/> <rect x="5" y="3" width="5" height="18" rx="1"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></symbol>
+  <symbol id="i-rotate-ccw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/> <path d="M3 3v5h5"/></symbol>
+  <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 3v18"/> <path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/> <path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/> <path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/> <path d="M7 21h10"/></symbol>
+  <symbol id="i-split" viewBox="0 0 24 24"><path d="M16 3h5v5"/> <path d="M8 3H3v5"/> <path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/> <path d="m15 9 6-6"/></symbol>
+  <symbol id="i-sprout" viewBox="0 0 24 24"><path d="M14 9.536V7a4 4 0 0 1 4-4h1.5a.5.5 0 0 1 .5.5V5a4 4 0 0 1-4 4 4 4 0 0 0-4 4c0 2 1 3 1 5a5 5 0 0 1-1 3"/> <path d="M4 9a5 5 0 0 1 8 4 5 5 0 0 1-8-4"/> <path d="M5 21h14"/></symbol>
+</svg>
+<!-- SPRITE:end -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header site-header--home" data-header>
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/img/logo.webp" srcset="assets/img/logo.webp 1x, assets/img/logo@2x.webp 2x" width="431" height="158" alt="Curatores, home">
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a class="site-nav__link" href="#course">Course</a>
+        <a class="site-nav__link" href="capitulum-1.html">Capitulum I</a>
+        <a class="site-nav__link" href="#about">About</a>
+        <a class="btn btn--primary btn--sm" href="contact.html">Join Curatores</a>
+      </nav>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu" data-menu-button>
+        <span class="menu-button__label">Menu</span>
+        <span class="menu-button__icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu hidden>
+    <nav aria-label="Menu">
+      <ol class="menu__list">
+        <li style="--i:0"><a href="#course">Course <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:1"><a href="capitulum-1.html">Capitulum I <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:2"><a href="#about">About <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:3"><a href="contact.html">Join Curatores <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+      </ol>
+    </nav>
+    <p class="menu__note"><span lang="la">Disce, et lingua vivet.</span> Learn, and the language will live.</p>
+  </div>
+
+  <main id="main">
+    <!-- Hero: the Curatores scroll unrolls -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="scroll" role="img" aria-label="Curatores" data-hero-logo>
+          <span class="scroll__paper"></span>
+          <span class="scroll__roller scroll__roller--left"></span>
+          <span class="scroll__roller scroll__roller--right"></span>
+        </div>
+        <p class="eyebrow eyebrow--plain hero__eyebrow" data-load style="--d:750">Commentatio<span class="interpunct" aria-hidden="true">·</span>An introduction to Latin</p>
+        <h1 class="hero__title" id="hero-title" data-split style="--split-delay:900ms">You already speak a little Latin.</h1>
+        <p class="hero__lead" data-load style="--d:1250">Curatores is a guided introduction to Latin: its words, its grammar, and the places it still turns up in English, from medicine and law to the names of dinosaurs.</p>
+        <div class="hero__actions" data-load style="--d:1400">
+          <a class="btn btn--primary" href="capitulum-1.html">Start Capitulum I <span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="contact.html">Request a consultation</a>
+        </div>
+      </div>
+      <a class="hero__cue" href="#explore" data-load style="--d:1800">
+        <span class="sr-only">Skip to the word explorer</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+      </a>
+    </section>
+
+    <!-- Word explorer -->
+    <section class="section surface-night explore" id="explore" aria-labelledby="explore-title">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="eyebrow">Hiding in plain sight</p>
+          <h2 class="section-head__title" id="explore-title">English is full of Latin.</h2>
+          <p class="section-head__lead">Pick a word. Its Latin root sits underneath, lined up on the stem they share. Every root here is taught in Capitulum I.</p>
+        </header>
+
+        <div class="explore__layout" data-explore data-reveal style="--i:1">
+          <div class="explore__list" role="tablist" aria-label="English words with Latin roots" aria-orientation="vertical" data-explore-list></div>
+          <div class="explore__card card card--frame" role="tabpanel" id="explore-panel" tabindex="0" data-explore-panel>
+            <div class="explore__stage" aria-hidden="true">
+              <div class="explore__grid" data-explore-grid>
+                <span class="explore__label" style="grid-row:1">English</span>
+                <span class="explore__cell explore__pre" data-row="en"></span>
+                <span class="explore__cell explore__stem" data-row="en">ocul</span>
+                <span class="explore__cell explore__suf" data-row="en">ar</span>
+                <span class="explore__label" style="grid-row:2">Latin</span>
+                <span class="explore__cell explore__pre" data-row="la"></span>
+                <span class="explore__cell explore__stem" data-row="la">ocul</span>
+                <span class="explore__cell explore__suf" data-row="la">us</span>
+              </div>
+            </div>
+            <p class="sr-only" data-explore-sr>Ocular comes from the Latin oculus, which means eye.</p>
+            <div class="explore__meta" aria-hidden="true">
+              <p class="explore__meaning" data-explore-meaning><i lang="la">oculus</i> means <b>“eye”</b></p>
+              <span class="tag" data-explore-tag>Etymology · Medicine</span>
+            </div>
+            <div class="explore__foot">
+              <div class="meter explore__timer" aria-hidden="true"><span data-explore-timer></span></div>
+              <button class="chip" type="button" data-explore-toggle aria-label="Pause the word tour">
+                <svg class="icon" aria-hidden="true"><use href="#i-pause" data-explore-toggle-icon/></svg>
+                <span data-explore-toggle-text>Pause</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About + how a chapter works -->
+    <section class="section surface-parchment about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about__grid">
+          <div data-reveal>
+            <p class="eyebrow">About Curatores</p>
+            <h2 class="section-head__title" id="about-title">Looking after a language you already use.</h2>
+            <p class="about__body">Curatores teaches Latin from the words up. The course is short and practical: each chapter teaches a set of words, shows how their endings change, traces them into modern English, and ends with a quiz so you know what stuck.</p>
+          </div>
+          <figure class="lexeme card card--frame" data-reveal style="--i:1">
+            <p class="eyebrow">From the Latin</p>
+            <p class="lexeme__head" lang="la">cūrātōrēs</p>
+            <p class="lexeme__pos">noun, plural <span aria-hidden="true">·</span> singular <i lang="la">cūrātor</i></p>
+            <p class="lexeme__def">Those who take care of something; keepers, guardians.</p>
+          </figure>
+        </div>
+
+        <div class="steps-wrap">
+          <h3 class="steps__heading" data-reveal>Every chapter, four steps</h3>
+          <ol class="steps">
+            <li class="step" data-reveal style="--i:0">
+              <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-book-open"/></svg></span>
+              <div>
+                <span class="step__num">Step 1</span>
+                <h4 class="step__title">Vocabulary</h4>
+                <p class="step__text">Learn the words on flashcards: greetings, nouns, adjectives and verbs.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal style="--i:1">
+              <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-split"/></svg></span>
+              <div>
+                <span class="step__num">Step 2</span>
+                <h4 class="step__title">Cases</h4>
+                <p class="step__text">See how a word’s ending changes its job in the sentence.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal style="--i:2">
+              <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg></span>
+              <div>
+                <span class="step__num">Step 3</span>
+                <h4 class="step__title">Etymology</h4>
+                <p class="step__text">Trace the words into medicine, law and paleontology.</p>
+              </div>
+            </li>
+            <li class="step" data-reveal style="--i:3">
+              <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg></span>
+              <div>
+                <span class="step__num">Step 4</span>
+                <h4 class="step__title">Quiz</h4>
+                <p class="step__text">Fifteen questions with instant feedback to check what stuck.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Course -->
+    <section class="section course" id="course" aria-labelledby="course-title">
+      <div class="container">
+        <header class="section-head section-head--center" data-reveal>
+          <p class="eyebrow">The course</p>
+          <h2 class="section-head__title" id="course-title">Four chapters, taken in order.</h2>
+          <p class="section-head__lead">Your progress is saved in this browser, so you can pick up where you left off.</p>
+        </header>
+
+        <ol class="chapters">
+          <li class="chapter chapter--open card card--frame card--lift" data-reveal style="--i:0">
+            <div class="chapter__top">
+              <span class="chapter__num" aria-hidden="true">I</span>
+              <span class="tag">Open</span>
+            </div>
+            <h3 class="chapter__title">
+              <a class="chapter__link" href="capitulum-1.html"><span class="chapter__kicker">Capitulum I</span>Fundamentals</a>
+            </h3>
+            <ul class="chapter__parts">
+              <li data-progress-part="vocabulary"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Vocabulary</li>
+              <li data-progress-part="cases"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Cases</li>
+              <li data-progress-part="etymology"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Etymology</li>
+              <li data-progress-part="quiz"><svg class="icon" aria-hidden="true"><use href="#i-circle-check-big"/></svg>Quiz</li>
+            </ul>
+            <div class="chapter__progress">
+              <div class="meter" aria-hidden="true"><span data-progress-meter></span></div>
+              <p class="chapter__progress-label" data-progress-label>Not started</p>
+            </div>
+            <span class="chapter__go" aria-hidden="true"><span data-progress-go>Start chapter</span> <span class="btn__arrow">→</span></span>
+          </li>
+          <li class="chapter chapter--soon" data-reveal style="--i:1">
+            <div class="chapter__top">
+              <span class="chapter__num" aria-hidden="true">II</span>
+              <svg class="icon chapter__lock" aria-hidden="true"><use href="#i-lock"/></svg>
+            </div>
+            <h3 class="chapter__title"><span class="chapter__kicker">Capitulum II</span>In preparation</h3>
+          </li>
+          <li class="chapter chapter--soon" data-reveal style="--i:2">
+            <div class="chapter__top">
+              <span class="chapter__num" aria-hidden="true">III</span>
+              <svg class="icon chapter__lock" aria-hidden="true"><use href="#i-lock"/></svg>
+            </div>
+            <h3 class="chapter__title"><span class="chapter__kicker">Capitulum III</span>In preparation</h3>
+          </li>
+          <li class="chapter chapter--soon" data-reveal style="--i:3">
+            <div class="chapter__top">
+              <span class="chapter__num" aria-hidden="true">IV</span>
+              <svg class="icon chapter__lock" aria-hidden="true"><use href="#i-lock"/></svg>
+            </div>
+            <h3 class="chapter__title"><span class="chapter__kicker">Capitulum IV</span>In preparation</h3>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Consultation -->
+    <section class="section cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta__card card card--frame" data-reveal>
+          <div>
+            <p class="eyebrow">Private consultation</p>
+            <h2 class="cta__title" id="cta-title">Prefer a guided start?</h2>
+            <p class="cta__text">Request a private consultation and an advisor will help you plan your study.</p>
+          </div>
+          <a class="btn btn--primary" href="contact.html">Request a consultation <span class="btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER:start -->
+<footer class="site-footer surface-night">
+  <div class="container site-footer__inner">
+    <div>
+      <a class="brand" href="index.html">
+        <img class="brand__logo" src="assets/img/logo.webp" srcset="assets/img/logo.webp 1x, assets/img/logo@2x.webp 2x" width="431" height="158" alt="Curatores, home" loading="lazy">
+      </a>
+      <p class="motto"><span lang="la">Disce, et lingua vivet.</span> Learn, and the language will live.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <div>
+        <p class="footer-nav__title">Learn</p>
+        <ul>
+          <li><a href="index.html#course">Course</a></li>
+          <li><a href="capitulum-1.html">Capitulum I</a></li>
+          <li><a href="capitulum-1.html#quiz">Quiz</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-nav__title">Curatores</p>
+        <ul>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html">Join Curatores</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p class="site-footer__legal"><span>© <span data-year>2026</span> Curatores</span><span lang="la">Lingua Latina non mortua est.</span></p>
+  </div>
+</footer>
+<!-- FOOTER:end -->
+</body>
+</html>
