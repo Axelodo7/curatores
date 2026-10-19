@@ -12,7 +12,8 @@ Curatores is a static website built with plain HTML, CSS and JavaScript. There i
 | --- | --- |
 | `index.html` | Home. The Curatores scroll logo unrolls in the hero. Visitors can try the English-to-Latin word explorer, read the About section and the "four steps" overview, and see the chapter cards with their saved progress. |
 | `capitulum-1.html` | Chapter I, Fundamentals: vocabulary flashcards, a case explorer, etymology for medicine, law and paleontology, and a 15-question quiz. |
-| `contact.html` | The "Request a private consultation" form, with inline validation. |
+| `contact.html` | The "Request a private consultation" form, with inline validation. Requests are emailed to ivcuratores@gmail.com. |
+| `team.html` | The Team: the founders, top contributors and contributors. |
 
 Other details:
 
@@ -57,15 +58,19 @@ vercel deploy --prod --yes
 
 `.vercelignore` keeps the dev files out of the deployment (`node_modules`, `tools`, `tests`, `package*.json`, this README). Pushing to GitHub does **not** deploy.
 
-## Before you rely on the contact form
+## The contact form
 
-The form validates input, but it doesn't send anything yet. To deliver requests, create an endpoint with a form service such as Formspree, then put its URL in `contact.html`:
+Consultation requests are emailed to **ivcuratores@gmail.com** through [FormSubmit](https://formsubmit.co), which needs no account. The address is set in `data-endpoint` in `contact.html`:
 
 ```html
-<form ... data-contact-form data-endpoint="https://formspree.io/f/your-id">
+<form ... data-contact-form data-endpoint="https://formsubmit.co/ajax/ivcuratores@gmail.com">
 ```
 
-The form then POSTs JSON (`firstName`, `lastName`, `email`, `message`) to that URL. While `data-endpoint` is empty, the form shows its confirmation without sending.
+- **One-time activation:** the first request sent from the live site makes FormSubmit email ivcuratores@gmail.com an "Activate Form" link. No messages are delivered until someone clicks it. Until then, the form tells visitors their request didn't send rather than pretending it did.
+- **Hiding the address:** after activating, FormSubmit offers a random alias. Put it in place of the email in `data-endpoint` so the address isn't visible in the page source.
+- **What's sent:** each email has the visitor's name, email (set as reply-to) and message, with the subject "Consultation request from <name>".
+- **Spam:** a hidden field (`_honey`) catches simple bots.
+- **Testing:** `npm run shoot -- contact` answers FormSubmit's calls itself, so the check never sends real email.
 
 ## Editing content
 
@@ -76,15 +81,17 @@ The form then POSTs JSON (`firstName`, `lastName`, `email`, `message`) to that U
 | Word explorer pairs (home page) | `PAIRS` in `assets/js/explore.js` |
 | Footer and icon sprite | `tools/partials/footer.html` and `tools/partials/sprite.html`, then run `node tools/partials.mjs` to copy them into every page |
 | Colours, type sizes, spacing | `assets/css/tokens.css` |
+| Team members | `team.html`: replace the role, name and introduction in each card, or copy a `<li class="member card">` block to add someone. Add contributors as `<li>Name</li>` in the empty `<ul class="contributors">`; the placeholder note hides itself once names are listed. |
+| Team photos | Put the image in `assets/img/team/` (portrait, about 800px wide) and replace the card's `<span class="member__initial">` line with `<img src="assets/img/team/photo.jpg" alt="Portrait of Name" loading="lazy">` |
 
-The header and mobile menu are repeated in each page. Change them in all three files.
+The header and mobile menu are repeated in each page. Change them in all four files.
 
 Capitula II–IV are shown as "In preparation" until their content is written.
 
 ## Project layout
 
 ```
-index.html, capitulum-1.html, contact.html
+index.html, capitulum-1.html, contact.html, team.html
 assets/
   css/     tokens, base, components, motion, plus one stylesheet per page and fonts.css
   js/      site.js (header, menu, scroll reveals), explore.js, lesson.js, flashcards.js,

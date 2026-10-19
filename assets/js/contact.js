@@ -40,10 +40,20 @@
     return fetch(endpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(rules.toSubmission(payload))
     }).then(function (response) {
-      if (!response.ok) throw new Error('Form endpoint responded ' + response.status);
+      return response.json().catch(function () { return null; }).then(function (reply) {
+        if (!response.ok || !rules.isDelivered(reply)) {
+          throw new Error('Form endpoint did not accept the message (' + response.status + ')');
+        }
+      });
     });
+  }
+
+  // Bots fill the hidden field; skip sending for them but behave as if it worked.
+  function isBot() {
+    var trap = form.elements._honey;
+    return Boolean(trap && trap.value);
   }
 
   function setBusy(busy) {
@@ -75,7 +85,7 @@
     }
 
     setBusy(true);
-    send(payload)
+    (isBot() ? Promise.resolve() : send(payload))
       .then(function () { showDone(payload); })
       .catch(function () {
         status.textContent = 'Your request didn’t send. Check your connection and try again.';

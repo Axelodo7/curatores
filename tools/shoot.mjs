@@ -18,7 +18,7 @@ const VIEWPORTS = {
   mobile: { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 },
   small: { width: 320, height: 640, isMobile: true, hasTouch: true }
 };
-const PAGES = ['index.html', 'capitulum-1.html', 'contact.html'];
+const PAGES = ['index.html', 'capitulum-1.html', 'contact.html', 'team.html'];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const problems = [];
 
@@ -171,20 +171,57 @@ async function shootQuiz(browser) {
   await page.close();
 }
 
-async function shootContact(browser) {
-  const page = await open(browser, 'contact.html', VIEWPORTS.desktop);
-  await scrollThrough(page);
-  await page.click('[data-submit]');
-  await sleep(400);
-  await page.screenshot({ path: join(OUT, 'contact-errors.png') });
+// The form posts to a real inbox, so form-service calls are answered here and never sent.
+async function mockFormService(page, reply) {
+  const sent = [];
+  await page.setRequestInterception(true);
+  page.on('request', (request) => {
+    if (!request.url().includes('formsubmit.co')) {
+      request.continue();
+      return;
+    }
+    if (request.method() === 'POST') sent.push(JSON.parse(request.postData() || '{}'));
+    request.respond({
+      status: 200,
+      contentType: 'application/json',
+      headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*' },
+      body: JSON.stringify(reply)
+    });
+  });
+  return sent;
+}
+
+async function fillContact(page) {
   await page.type('#first-name', 'Livia');
   await page.type('#last-name', 'Drusilla');
   await page.type('#email', 'livia@example.com');
   await page.type('#message', 'I would like to read Virgil in Latin.');
   await page.click('[data-submit]');
   await sleep(1600);
+}
+
+async function shootContact(browser) {
+  const page = await open(browser, 'contact.html', VIEWPORTS.desktop);
+  const sent = await mockFormService(page, { success: 'true', message: 'The form was submitted successfully.' });
+  await scrollThrough(page);
+  await page.click('[data-submit]');
+  await sleep(400);
+  await page.screenshot({ path: join(OUT, 'contact-errors.png') });
+  await fillContact(page);
   await page.screenshot({ path: join(OUT, 'contact-done.png') });
+  process.stdout.write(`contact: delivered payload ${JSON.stringify(sent[0])}\n`);
   await page.close();
+
+  // Before activation FormSubmit answers 200 with success "false"; the form must say it failed.
+  const pending = await open(browser, 'contact.html', VIEWPORTS.desktop);
+  await mockFormService(pending, { success: 'false', message: 'This form needs Activation.' });
+  await fillContact(pending);
+  const status = await pending.evaluate(() => ({
+    error: document.querySelector('[data-status]').textContent,
+    confirmed: !document.querySelector('[data-done]').hidden
+  }));
+  process.stdout.write(`contact: unactivated reply -> ${JSON.stringify(status)}\n`);
+  await pending.close();
 }
 
 async function shootMenu(browser) {

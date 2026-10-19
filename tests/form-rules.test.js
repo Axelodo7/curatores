@@ -43,3 +43,24 @@ test('normalize trims values and does not modify its input', () => {
   const input = Object.freeze({ firstName: '  Livia ', email: ' a@b.co ' });
   assert.deepEqual(normalize(input), { firstName: 'Livia', lastName: '', email: 'a@b.co', message: '' });
 });
+
+const { toSubmission, isDelivered } = require('../assets/js/form-rules.js');
+
+test('toSubmission builds the FormSubmit payload with a subject line', () => {
+  assert.deepEqual(toSubmission({ ...valid, firstName: ' Livia ', lastName: 'Drusilla ' }), {
+    name: 'Livia Drusilla',
+    email: 'livia@example.com',
+    message: 'I would like to read Virgil.',
+    _subject: 'Consultation request from Livia Drusilla',
+    _template: 'table'
+  });
+});
+
+test('isDelivered accepts only a confirmed send', () => {
+  assert.equal(isDelivered({ success: 'true', message: 'The form was submitted successfully.' }), true);
+  assert.equal(isDelivered({ success: true }), true);
+  assert.equal(isDelivered({ ok: true }), true);
+  assert.equal(isDelivered({ success: 'false', message: 'This form needs Activation.' }), false);
+  assert.equal(isDelivered(null), false);
+  assert.equal(isDelivered('true'), false);
+});

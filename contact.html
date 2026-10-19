@@ -55,6 +55,7 @@
         <a class="site-nav__link" href="index.html#course">Course</a>
         <a class="site-nav__link" href="capitulum-1.html">Capitulum I</a>
         <a class="site-nav__link" href="index.html#about">About</a>
+        <a class="site-nav__link" href="team.html">The Team</a>
         <a class="btn btn--primary btn--sm" href="contact.html" aria-current="page">Join Curatores</a>
       </nav>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu" data-menu-button>
@@ -70,7 +71,8 @@
         <li style="--i:0"><a href="index.html#course">Course <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
         <li style="--i:1"><a href="capitulum-1.html">Capitulum I <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
         <li style="--i:2"><a href="index.html#about">About <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
-        <li style="--i:3"><a href="contact.html" aria-current="page">Join Curatores <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:3"><a href="team.html">The Team <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
+        <li style="--i:4"><a href="contact.html" aria-current="page">Join Curatores <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a></li>
       </ol>
     </nav>
     <p class="menu__note"><span lang="la">Disce, et lingua vivet.</span> Learn, and the language will live.</p>
@@ -103,11 +105,18 @@
 
       <div class="contact__panel card card--frame" data-load style="--d:300">
         <!--
-          Set data-endpoint to your form service URL (for example a Formspree or
-          Basin endpoint) to deliver requests. Left empty, the form validates and
-          shows the confirmation without sending anything.
+          Requests are emailed to ivcuratores@gmail.com through FormSubmit (formsubmit.co).
+          The inbox must click the one-time "Activate Form" email before messages arrive.
+          After activating, FormSubmit offers a random alias you can use in place of the
+          address below so it isn't visible in the page source.
+          Left empty, data-endpoint makes the form validate and confirm without sending.
         -->
-        <form class="form" novalidate data-contact-form data-endpoint="">
+        <form class="form" novalidate data-contact-form data-endpoint="https://formsubmit.co/ajax/ivcuratores@gmail.com">
+          <!-- Spam trap: hidden from people, filled in by bots. -->
+          <div class="form__trap" aria-hidden="true">
+            <label for="honey">Leave this field empty</label>
+            <input id="honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form__head">
             <h2 class="form__title">Your details</h2>
             <p class="form__required">All fields are required.</p>
@@ -179,6 +188,7 @@
         <p class="footer-nav__title">Curatores</p>
         <ul>
           <li><a href="index.html#about">About</a></li>
+          <li><a href="team.html">The Team</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="contact.html">Join Curatores</a></li>
         </ul>

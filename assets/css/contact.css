@@ -100,6 +100,15 @@
   gap: 1.1rem;
 }
 
+/* Spam trap: off-screen for people, still in the form for bots. */
+.form__trap {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form__head {
   display: flex;
   flex-wrap: wrap;

@@ -51,5 +51,39 @@
     return errors;
   }
 
-  return Object.freeze({ LIMITS: LIMITS, normalize: normalize, validateContact: validateContact });
+  /**
+   * The JSON body posted to the form service (FormSubmit field names).
+   * @param {{firstName?: string, lastName?: string, email?: string, message?: string}} values
+   * @returns {{name: string, email: string, message: string, _subject: string, _template: string}}
+   */
+  function toSubmission(values) {
+    var v = normalize(values);
+    var name = (v.firstName + ' ' + v.lastName).trim();
+    return {
+      name: name,
+      email: v.email,
+      message: v.message,
+      _subject: 'Consultation request from ' + name,
+      _template: 'table'
+    };
+  }
+
+  /**
+   * Whether the form service accepted the message. FormSubmit answers 200 with
+   * success "false" until the inbox owner activates the form, so status alone is not enough.
+   * @param {unknown} reply parsed JSON from the service
+   * @returns {boolean}
+   */
+  function isDelivered(reply) {
+    if (!reply || typeof reply !== 'object') return false;
+    return reply.success === true || reply.success === 'true' || reply.ok === true;
+  }
+
+  return Object.freeze({
+    LIMITS: LIMITS,
+    normalize: normalize,
+    validateContact: validateContact,
+    toSubmission: toSubmission,
+    isDelivered: isDelivered
+  });
 });

@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
-const PAGES = ['index.html', 'capitulum-1.html', 'contact.html'];
+const PAGES = ['index.html', 'capitulum-1.html', 'contact.html', 'team.html'];
 const SLOTS = { SPRITE: 'sprite.html', FOOTER: 'footer.html' };
 
 for (const page of PAGES) {
