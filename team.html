@@ -87,6 +87,8 @@
 
     <!--
       Editing this page
+      - Crests: the initials inside <span class="crest">…</span> sit on the gold shield
+        (assets/img/team/crest.svg); change the letters, keep the span.
       - Photos: put the image in assets/img/team/ (portrait, about 800px wide) and replace
         the <span class="member__initial">…</span> line inside its <figure> with
         <img src="assets/img/team/photo.jpg" alt="Portrait of Name" loading="lazy">
@@ -105,42 +107,42 @@
         <ul class="members members--pair">
           <li class="member card" data-reveal style="--i:0">
             <figure class="member__photo">
-              <span class="member__initial" aria-hidden="true">C</span>
+              <span class="member__initial" aria-hidden="true"><span class="crest">AC</span></span>
             </figure>
             <div class="member__body">
               <p class="member__role">Co-founder</p>
-              <h3 class="member__name">Founder name</h3>
-              <p class="member__bio">Add a short introduction here: who they are, what they teach, and why they started Curatores.</p>
+              <h3 class="member__name">A. C.</h3>
+              <p class="member__bio">I have been taking Latin for six to seven years. My teachers have taught me not only a language, but different ways to think. Latin has improved my ability to deconstruct sentence structures and has improved my vocabulary significantly. Seeing the Latin department slowly diminish and some of my Latin teachers getting laid off has inspired me to start this cause. I want to bring both the legacy of Latin as well as its practical uses in the modern world.</p>
             </div>
           </li>
           <li class="member card" data-reveal style="--i:1">
             <figure class="member__photo">
-              <span class="member__initial" aria-hidden="true">C</span>
+              <span class="member__initial" aria-hidden="true"><span class="crest">DM</span></span>
             </figure>
             <div class="member__body">
               <p class="member__role">Co-founder</p>
-              <h3 class="member__name">Founder name</h3>
-              <p class="member__bio">Add a short introduction here: who they are, what they teach, and why they started Curatores.</p>
+              <h3 class="member__name">D. M.</h3>
+              <p class="member__bio">While many others decided to go with Spanish or French I chose Latin. Latin is a language which I have been learning for around 7 years and every year I take it makes me like the language even more. But unfortunately I have seen several school districts remove the Latin program and even districts that still have it are getting way less attention from both students and the schools themselves. I wanted to change this and help bring this great language back up.</p>
             </div>
           </li>
           <li class="member card" data-reveal style="--i:2">
             <figure class="member__photo">
-              <span class="member__initial" aria-hidden="true">C</span>
+              <span class="member__initial" aria-hidden="true"><span class="crest">GJ</span></span>
             </figure>
             <div class="member__body">
               <p class="member__role">Co-founder</p>
-              <h3 class="member__name">Founder name</h3>
-              <p class="member__bio">Add a short introduction here: who they are, what they teach, and why they started Curatores.</p>
+              <h3 class="member__name">G. J.</h3>
+              <p class="member__bio">I have been taking Latin for five years. I could still remember my first Latin class. I was sitting in front of my computer screen, my eyes glued to the very words that enlighten me today. I saw the grammar systems and new vocabulary I could discover, and I could not help but shed a tear. I was deeply in love with the language. My life changed at the end of ninth grade. Seeing my old teachers lose their jobs was truly heartbreaking to me. I vowed to fight for the language that had carried me to the top these past few years. From now on, I hold my head high, for Julius Caesar and the Romans.</p>
             </div>
           </li>
           <li class="member card" data-reveal style="--i:3">
             <figure class="member__photo">
-              <span class="member__initial" aria-hidden="true">C</span>
+              <span class="member__initial" aria-hidden="true"><span class="crest">SA</span></span>
             </figure>
             <div class="member__body">
               <p class="member__role">Co-founder</p>
-              <h3 class="member__name">Founder name</h3>
-              <p class="member__bio">Add a short introduction here: who they are, what they teach, and why they started Curatores.</p>
+              <h3 class="member__name">S. A.</h3>
+              <p class="member__bio">Over my 6 years of studying Latin, my classes usually always had the same dedicated people in it. This class allowed me to learn without stressing me out like many other classes do. Latin became more than a class, it became a community which helped me build lasting connections with fellow students and my teachers. My friends in my Latin classes helped make it one of my funnest classes. I want to bring this sense of belonging and community to more people.</p>
             </div>
           </li>
         </ul>
@@ -158,7 +160,7 @@
         <ul class="members members--pair">
           <li class="member card" data-reveal style="--i:0">
             <figure class="member__photo">
-              <span class="member__initial" aria-hidden="true">A</span>
+              <span class="member__initial" aria-hidden="true"><span class="crest">AZ</span></span>
             </figure>
             <div class="member__body">
               <p class="member__role">Website design and development</p>
@@ -168,7 +170,7 @@
           </li>
           <li class="member card" data-reveal style="--i:1">
             <figure class="member__photo">
-              <span class="member__initial" aria-hidden="true">C</span>
+              <span class="member__initial" aria-hidden="true"><span class="crest">C</span></span>
             </figure>
             <div class="member__body">
               <p class="member__role">Role</p>
@@ -189,8 +191,11 @@
           <p class="section-head__lead">Everyone who has helped write, check or test the course.</p>
         </header>
 
-        <!-- Add each contributor as <li>Name</li>; the note below can go once the list has names. -->
-        <ul class="contributors" data-reveal></ul>
+        <!-- One <li> per contributor (copy one below); the "will be listed here" note hides itself once the list has names. -->
+        <ul class="contributors" data-reveal>
+          <li><span class="crest crest--sm" aria-hidden="true">SV</span><span><span class="contributors__name">Saisaran Vigneshkumar</span><span class="contributors__role">Latin history &amp; mythology researcher</span></span></li>
+          <li><span class="crest crest--sm" aria-hidden="true">AP</span><span><span class="contributors__name">Aaditya Patel</span><span class="contributors__role">Artist &amp; video producer</span></span></li>
+        </ul>
 
         <div class="contributors-empty card card--frame" data-reveal>
           <p>Contributors will be listed here as the course grows.</p>

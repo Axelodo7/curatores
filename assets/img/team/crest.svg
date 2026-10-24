@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
+  <!-- Gold heater shield behind each team member's initials (the letters are HTML, set in Marcellus). -->
+  <defs>
+    <radialGradient id="face" cx="36%" cy="24%" r="88%">
+      <stop offset="0" stop-color="#ffe796"/>
+      <stop offset="0.42" stop-color="#f4bd2f"/>
+      <stop offset="1" stop-color="#bf7a0c"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4a2611"/>
+      <stop offset="1" stop-color="#2a140a"/>
+    </linearGradient>
+  </defs>
+  <path d="M10 4H90Q96 4 96 10V52C96 85 75 106 50 118C25 106 4 85 4 52V10Q4 4 10 4Z" fill="url(#rim)"/>
+  <path d="M14 10H86Q90 10 90 14V52C90 80 71 99 50 110C29 99 10 80 10 52V14Q10 10 14 10Z" fill="url(#face)" stroke="#f9d977" stroke-width="1.2"/>
+  <path d="M18 15H82Q85 15 85 18V52C85 76 69 93 50 103C31 93 15 76 15 52V18Q15 15 18 15Z" fill="none" stroke="#9a5d0a" stroke-opacity="0.5" stroke-width="1"/>
+</svg>
