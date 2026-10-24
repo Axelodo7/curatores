@@ -21,6 +21,20 @@ test('html carries the site theme, the logo and a reply link', () => {
   assert.match(html, /Reply to Livia/);
 });
 
+test('a wide card on a light backdrop, with the red kept to the header band', () => {
+  const { html } = renderConsultationEmail(values);
+  assert.match(html, /<body style="[^"]*background-color:#f4ede1/);
+  assert.match(html, /max-width:720px/);
+  assert.doesNotMatch(html, /max-width:600px/);
+  // A fixed-size block, so a tall name beside it can't stretch the circle into an oval.
+  assert.match(html, /<div style="width:60px;height:60px;[^"]*">L<\/div>/, 'monogram shows the first initial');
+});
+
+test('monogram copes with names that start with an accent or emoji', () => {
+  assert.match(renderConsultationEmail({ ...values, firstName: 'élodie' }).html, />É<\/div>/);
+  assert.match(renderConsultationEmail({ ...values, firstName: '🦉 Owl' }).html, />🦉<\/div>/);
+});
+
 test('logo, links and footer point at the ivcuratores.org domain', () => {
   const { html, text } = renderConsultationEmail(values);
   assert.equal(SITE_URL, 'https://ivcuratores.org');
