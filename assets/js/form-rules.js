@@ -79,11 +79,23 @@
     return reply.success === true || reply.success === 'true' || reply.ok === true;
   }
 
+  /**
+   * Whether to retry through the fallback service: the site's own sender
+   * reports it has no email key configured yet.
+   * @param {number} status HTTP status from the primary endpoint
+   * @param {unknown} reply parsed JSON from the primary endpoint
+   * @returns {boolean}
+   */
+  function needsFallback(status, reply) {
+    return status === 503 && Boolean(reply) && typeof reply === 'object' && reply.error === 'not-configured';
+  }
+
   return Object.freeze({
     LIMITS: LIMITS,
     normalize: normalize,
     validateContact: validateContact,
     toSubmission: toSubmission,
-    isDelivered: isDelivered
+    isDelivered: isDelivered,
+    needsFallback: needsFallback
   });
 });

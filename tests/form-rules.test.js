@@ -64,3 +64,13 @@ test('isDelivered accepts only a confirmed send', () => {
   assert.equal(isDelivered(null), false);
   assert.equal(isDelivered('true'), false);
 });
+
+const { needsFallback } = require('../assets/js/form-rules.js');
+
+test('needsFallback only when the site sender reports it is not configured', () => {
+  assert.equal(needsFallback(503, { success: false, error: 'not-configured' }), true);
+  assert.equal(needsFallback(503, { success: false, error: 'send-failed' }), false);
+  assert.equal(needsFallback(502, { success: false, error: 'not-configured' }), false);
+  assert.equal(needsFallback(503, null), false);
+  assert.equal(needsFallback(200, { success: true }), false);
+});

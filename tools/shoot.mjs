@@ -171,21 +171,25 @@ async function shootQuiz(browser) {
   await page.close();
 }
 
-// The form posts to a real inbox, so form-service calls are answered here and never sent.
-async function mockFormService(page, reply) {
-  const sent = [];
+// The form reaches a real inbox, so both senders are answered here and nothing is sent.
+// routes: { api: { status, body }, formsubmit: { status, body } }
+async function mockSenders(page, routes) {
+  const sent = { api: [], formsubmit: [] };
   await page.setRequestInterception(true);
   page.on('request', (request) => {
-    if (!request.url().includes('formsubmit.co')) {
+    const url = request.url();
+    const route = url.includes('/api/consultation') ? 'api' : url.includes('formsubmit.co') ? 'formsubmit' : null;
+    if (!route) {
       request.continue();
       return;
     }
-    if (request.method() === 'POST') sent.push(JSON.parse(request.postData() || '{}'));
+    if (request.method() === 'POST') sent[route].push(JSON.parse(request.postData() || '{}'));
+    const { status, body } = routes[route];
     request.respond({
-      status: 200,
+      status,
       contentType: 'application/json',
       headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Headers': '*' },
-      body: JSON.stringify(reply)
+      body: JSON.stringify(body)
     });
   });
   return sent;
@@ -200,27 +204,43 @@ async function fillContact(page) {
   await sleep(1600);
 }
 
+async function contactOutcome(page) {
+  return page.evaluate(() => ({
+    confirmed: !document.querySelector('[data-done]').hidden,
+    error: document.querySelector('[data-status]').textContent
+  }));
+}
+
 async function shootContact(browser) {
+  const SENT = { status: 200, body: { success: true } };
+  const NOT_CONFIGURED = { status: 503, body: { success: false, error: 'not-configured' } };
+  const FS_OK = { status: 200, body: { success: 'true', message: 'The form was submitted successfully.' } };
+  const FS_PENDING = { status: 200, body: { success: 'false', message: 'This form needs Activation.' } };
+
+  // 1. The site's own sender works: themed email, FormSubmit untouched.
   const page = await open(browser, 'contact.html', VIEWPORTS.desktop);
-  const sent = await mockFormService(page, { success: 'true', message: 'The form was submitted successfully.' });
+  const sent = await mockSenders(page, { api: SENT, formsubmit: FS_OK });
   await scrollThrough(page);
   await page.click('[data-submit]');
   await sleep(400);
   await page.screenshot({ path: join(OUT, 'contact-errors.png') });
   await fillContact(page);
   await page.screenshot({ path: join(OUT, 'contact-done.png') });
-  process.stdout.write(`contact: delivered payload ${JSON.stringify(sent[0])}\n`);
+  process.stdout.write(`contact/sender ok: ${JSON.stringify(await contactOutcome(page))} api=${JSON.stringify(sent.api[0])} formsubmit calls=${sent.formsubmit.length}\n`);
   await page.close();
 
-  // Before activation FormSubmit answers 200 with success "false"; the form must say it failed.
+  // 2. No email key yet: falls back to FormSubmit.
+  const fallback = await open(browser, 'contact.html', VIEWPORTS.desktop);
+  const fallbackSent = await mockSenders(fallback, { api: NOT_CONFIGURED, formsubmit: FS_OK });
+  await fillContact(fallback);
+  process.stdout.write(`contact/fallback: ${JSON.stringify(await contactOutcome(fallback))} formsubmit=${JSON.stringify(fallbackSent.formsubmit[0])}\n`);
+  await fallback.close();
+
+  // 3. Fallback not activated yet: the visitor is told it didn't send.
   const pending = await open(browser, 'contact.html', VIEWPORTS.desktop);
-  await mockFormService(pending, { success: 'false', message: 'This form needs Activation.' });
+  await mockSenders(pending, { api: NOT_CONFIGURED, formsubmit: FS_PENDING });
   await fillContact(pending);
-  const status = await pending.evaluate(() => ({
-    error: document.querySelector('[data-status]').textContent,
-    confirmed: !document.querySelector('[data-done]').hidden
-  }));
-  process.stdout.write(`contact: unactivated reply -> ${JSON.stringify(status)}\n`);
+  process.stdout.write(`contact/unactivated: ${JSON.stringify(await contactOutcome(pending))}\n`);
   await pending.close();
 }
 

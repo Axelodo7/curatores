@@ -2,7 +2,7 @@
 
 A guided introduction to Latin: its words, its grammar, and the places it still turns up in English.
 
-**Live site:** https://curatores.vercel.app
+**Live site:** https://ivcuratores.org (also at https://curatores.vercel.app)
 
 Curatores is a static website built with plain HTML, CSS and JavaScript. There is no framework and no build step, so the pages open straight from disk or from any static host.
 
@@ -43,7 +43,7 @@ You can also open `index.html` directly in a browser.
 ```bash
 npm run shoot -- pages --out .shots                              # every page, all widths
 npm run shoot -- quiz --out .shots                               # plays through the quiz
-npm run shoot -- pages --url https://curatores.vercel.app/ --out .shots   # check the live site
+npm run shoot -- pages --url https://ivcuratores.org/ --out .shots       # check the live site
 ```
 
 Other modes are `hero`, `explore`, `lesson`, `contact`, `menu` and `all`. If Chrome isn't in the default location, set `CHROME_PATH`.
@@ -60,17 +60,43 @@ vercel deploy --prod --yes
 
 ## The contact form
 
-Consultation requests are emailed to **ivcuratores@gmail.com** through [FormSubmit](https://formsubmit.co), which needs no account. The address is set in `data-endpoint` in `contact.html`:
+Consultation requests are emailed to **ivcuratores@gmail.com** in an email styled like the site: the scroll logo, the red, parchment and gold colours, the message, and a "Reply" button. Replying to it answers the visitor directly.
 
-```html
-<form ... data-contact-form data-endpoint="https://formsubmit.co/ajax/ivcuratores@gmail.com">
-```
+How it works:
 
-- **One-time activation:** the first request sent from the live site makes FormSubmit email ivcuratores@gmail.com an "Activate Form" link. No messages are delivered until someone clicks it. Until then, the form tells visitors their request didn't send rather than pretending it did.
-- **Hiding the address:** after activating, FormSubmit offers a random alias. Put it in place of the email in `data-endpoint` so the address isn't visible in the page source.
-- **What's sent:** each email has the visitor's name, email (set as reply-to) and message, with the subject "Consultation request from <name>".
-- **Spam:** a hidden field (`_honey`) catches simple bots.
-- **Testing:** `npm run shoot -- contact` answers FormSubmit's calls itself, so the check never sends real email.
+1. The form posts to `/api/consultation`, a Vercel serverless function in `api/consultation.js`. The function checks the input with the same rules as the form, refuses other websites and repeated bursts, and ignores bots caught by the hidden `_honey` field.
+2. It renders the email with `lib/consultation-email.js` and sends it through [Resend](https://resend.com) (free tier).
+3. If the site has no Resend key yet, the function answers `not-configured`. The form then falls back to [FormSubmit](https://formsubmit.co) (`data-fallback-endpoint` in `contact.html`), which sends a plain, unthemed email.
+
+### One-time setup for the themed email
+
+The email is sent from `consultations@ivcuratores.org`, so Resend has to be allowed to send for ivcuratores.org. Do the steps in this order: a key added before the domain is verified makes every send fail.
+
+1. Create a free account at [resend.com](https://resend.com). Making it with ivcuratores@gmail.com keeps it with Curatores, but any address works.
+2. In Resend, open **Domains** → **Add Domain**, enter `ivcuratores.org`, and keep the suggested region.
+3. Resend lists a few DNS records, normally an MX and a TXT named `send` and a TXT named `resend._domainkey`. Add each one in GoDaddy (**My Products → ivcuratores.org → DNS → Add New Record**). Copy the values exactly, and type only the part shown as the Name, because GoDaddy adds `.ivcuratores.org` itself. Leave the existing `_dmarc` record as it is.
+4. Back in Resend, click **Verify DNS Records** and wait until the domain shows **Verified**. This usually takes minutes, but can take a few hours.
+5. Open **API Keys** → **Create API Key**. Choose **Sending access**, limit it to `ivcuratores.org`, and copy the key (`re_…`).
+6. Add the key to Vercel. Either use the dashboard (project **curatores** → **Settings → Environment Variables**, name `RESEND_API_KEY`, environment Production, marked Sensitive), or run this from this folder and paste the key when asked:
+
+   ```bash
+   vercel env add RESEND_API_KEY production
+   ```
+
+7. Redeploy with `vercel deploy --prod --yes`, so the function picks up the key.
+
+The email arrives at ivcuratores@gmail.com from "Curatores website &lt;consultations@ivcuratores.org&gt;", with the subject "Consultation request from &lt;name&gt;". Nobody needs to read that address: replies go to the visitor. If Gmail puts the first one in Spam, mark it **Not spam**.
+
+### FormSubmit fallback
+
+Until the key is set, FormSubmit carries the requests. The first request makes FormSubmit email ivcuratores@gmail.com an "Activate Form" link, and nothing is delivered until someone clicks it. Until then, the form tells visitors their request didn't send rather than pretending it did.
+
+### Previewing and testing
+
+- `node tools/email-preview.mjs` writes `.shots/email-preview.html`: a sample request exactly as it arrives, with the logo and links pointing at ivcuratores.org. Open it in a browser. To try image changes before deploying, run `npm run serve` and set `PREVIEW_SITE=http://127.0.0.1:4190`.
+- `npm test` covers the email template and every response of the function, with Resend faked.
+- `npm run shoot -- contact` answers both senders itself, so the check never sends real email.
+- To test real sending locally, start the server with the key set: `RESEND_API_KEY=re_… npm run serve`.
 
 ## Editing content
 
@@ -97,9 +123,12 @@ assets/
   js/      site.js (header, menu, scroll reveals), explore.js, lesson.js, flashcards.js,
            quiz.js + quiz-core.js + quiz-data.js, progress.js, contact.js + form-rules.js
   fonts/   self-hosted woff2 files
-  img/     logo (1x and 2x WebP), favicon
+  img/     logo (1x and 2x WebP), favicon, email/logo.png (PNG for email clients)
 tests/     node --test unit tests
-tools/     serve.mjs (local server), shoot.mjs (screenshots), partials.mjs (+ partials/)
+tools/     serve.mjs (local server + /api), shoot.mjs (screenshots), email-preview.mjs,
+           partials.mjs (+ partials/)
+api/       consultation.js: Vercel function that emails consultation requests
+lib/       consultation-email.js: the themed email template
 ```
 
 ## Credits
