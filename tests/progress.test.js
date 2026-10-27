@@ -63,3 +63,33 @@ test('save reports failure when storage throws', () => {
   const broken = { setItem: () => { throw new Error('quota'); } };
   assert.equal(progress.save(broken, progress.empty()), false);
 });
+
+test('the default store is Capitulum I under its original key', () => {
+  assert.equal(progress.KEY, 'curatores:capitulum-1');
+  assert.deepEqual(progress.PARTS, ['vocabulary', 'cases', 'etymology', 'quiz']);
+  assert.equal(progress.QUIZ_TOTAL, 15);
+});
+
+test('each chapter has its own key and parts', () => {
+  const second = progress.forChapter('capitulum-2');
+  assert.equal(second.KEY, 'curatores:capitulum-2');
+  assert.deepEqual(second.PARTS, ['vocabulary', 'declensions', 'etymology', 'quiz']);
+  assert.equal(second.withPart(second.empty(), 'declensions').parts.declensions, true);
+  assert.throws(() => second.withPart(second.empty(), 'cases'), RangeError);
+  assert.throws(() => progress.withPart(progress.empty(), 'declensions'), RangeError);
+});
+
+test('unknown chapters are rejected', () => {
+  assert.throws(() => progress.forChapter('capitulum-9'), RangeError);
+  assert.throws(() => progress.forChapter('__proto__'), RangeError);
+});
+
+test('chapters save to separate keys and do not overwrite each other', () => {
+  const storage = memoryStorage();
+  const first = progress.forChapter('capitulum-1');
+  const second = progress.forChapter('capitulum-2');
+  first.save(storage, first.withPart(first.empty(), 'cases'));
+  second.save(storage, second.withQuizScore(second.empty(), 11));
+  assert.deepEqual(first.load(storage), { parts: { cases: true }, quizBest: null });
+  assert.deepEqual(second.load(storage), { parts: { quiz: true }, quizBest: 11 });
+});

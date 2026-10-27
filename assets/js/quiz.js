@@ -1,4 +1,4 @@
-/* Capitulum I quiz: one question at a time, instant feedback, a Latin honour at the end. */
+/* Chapter quiz (questions from the page's quiz-data file): one question at a time, instant feedback, a Latin honour at the end. */
 (function () {
   'use strict';
 

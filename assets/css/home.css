@@ -417,6 +417,144 @@
   color: var(--ink-muted);
 }
 
+.about__heading {
+  margin-top: var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: 1.2;
+}
+
+.about__heading + .about__body {
+  margin-top: var(--space-2);
+}
+
+/* Why Latin: the case on the left, the fields it reaches on the right. */
+.why {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  padding-top: var(--space-2);
+  border-top: 1px solid rgb(35 21 15 / 0.14);
+}
+
+.why .about__heading {
+  margin-top: var(--space-4);
+}
+
+.abbrevs {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 38rem;
+  margin-top: var(--space-3);
+}
+
+.abbrevs > div {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 1.1rem;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  background: rgb(35 21 15 / 0.05);
+}
+
+.abbrevs dt {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  color: var(--wall);
+}
+
+.abbrevs dd {
+  margin: 0;
+  font-size: var(--text-md);
+  color: var(--ink-muted);
+}
+
+.abbrevs dd i {
+  color: var(--ink);
+}
+
+.fields__lead {
+  margin-top: var(--space-4);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wall);
+}
+
+.fields {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.field__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--night-2), var(--night));
+  color: var(--gold);
+  box-shadow: var(--shadow-sm);
+}
+
+.field__icon .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.field__title {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  line-height: 1.25;
+}
+
+.field__text {
+  margin-top: 0.2rem;
+  color: var(--ink-muted);
+}
+
+@media (min-width: 40rem) {
+  .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* The team's statement of why, closing the section as a pull quote. */
+.about__mission {
+  max-width: 32ch;
+  margin: var(--space-7) auto 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.2;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.about__mission::before {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin: 0 auto var(--space-3);
+  border-radius: 2px;
+  background: var(--gold);
+}
+
 .lexeme {
   padding: clamp(2rem, 4vw, 3rem);
   color: var(--plaster);
@@ -458,6 +596,11 @@
 @media (min-width: 56rem) {
   .about__grid {
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: var(--space-6);
+  }
+
+  .why {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
     gap: var(--space-6);
   }
 }

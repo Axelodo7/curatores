@@ -1,4 +1,4 @@
-// Visual check: node tools/shoot.mjs <pages|hero|quiz|contact|all> [--out dir] [--url base]
+// Visual check: node tools/shoot.mjs <pages|hero|quiz|contact|all> [--out dir] [--url base] [--page chapter.html]
 // Needs the dev server (npm run serve) and puppeteer-core with the system Chrome.
 import puppeteer from 'puppeteer-core';
 import { mkdir } from 'node:fs/promises';
@@ -12,13 +12,14 @@ const flag = (name, fallback) => {
 const MODE = args[0] && !args[0].startsWith('--') ? args[0] : 'all';
 const OUT = flag('--out', '.shots');
 const BASE = flag('--url', 'http://127.0.0.1:4190/');
+const QUIZ_PAGE = flag('--page', 'capitulum-1.html');
 const CHROME = process.env.CHROME_PATH || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 const VIEWPORTS = {
   desktop: { width: 1440, height: 900 },
   mobile: { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 },
   small: { width: 320, height: 640, isMobile: true, hasTouch: true }
 };
-const PAGES = ['index.html', 'capitulum-1.html', 'contact.html', 'team.html'];
+const PAGES = ['index.html', 'capitulum-1.html', 'capitulum-2.html', 'contact.html', 'team.html'];
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const problems = [];
 
@@ -144,16 +145,16 @@ async function shootLesson(browser) {
 }
 
 async function shootQuiz(browser) {
-  const page = await open(browser, 'capitulum-1.html', VIEWPORTS.desktop);
+  const page = await open(browser, QUIZ_PAGE, VIEWPORTS.desktop);
   await page.evaluate(() => document.querySelector('#quiz').scrollIntoView());
   await sleep(1400);
   const quiz = await page.$('[data-quiz]');
   await quiz.screenshot({ path: join(OUT, 'quiz-start.png') });
-  // Question 1: pick "Mother" (wrong) to see the error state.
-  await page.click('.option[data-choice="0"]');
+  const answers = await page.evaluate(() => window.CURATORES_QUIZ.map((q) => q.answer));
+  // Question 1: pick a wrong option to see the error state.
+  await page.click(`.option[data-choice="${(answers[0] + 1) % 4}"]`);
   await sleep(700);
   await quiz.screenshot({ path: join(OUT, 'quiz-wrong.png') });
-  const answers = await page.evaluate(() => window.CURATORES_QUIZ.map((q) => q.answer));
   for (let i = 1; i < answers.length; i++) {
     await page.click('.quiz__actions .btn');
     await sleep(750);

@@ -12,12 +12,13 @@ Curatores is a static website built with plain HTML, CSS and JavaScript. There i
 | --- | --- |
 | `index.html` | Home. The Curatores scroll logo unrolls in the hero. Visitors can try the English-to-Latin word explorer, read the About section and the "four steps" overview, and see the chapter cards with their saved progress. |
 | `capitulum-1.html` | Chapter I, Fundamentals: vocabulary flashcards, a case explorer, etymology for medicine, law and paleontology, and a 15-question quiz. |
+| `capitulum-2.html` | Chapter II, Declensions: 28 flashcards (including the numbers one to ten), a declension chart, sample sentences, etymology for architecture, medicine, law and paleontology, and a 15-question quiz. |
 | `contact.html` | The "Request a private consultation" form, with inline validation. Requests are emailed to ivcuratores@gmail.com. |
 | `team.html` | The Team: the founders, top contributors and contributors. |
 
 Other details:
 
-- **Progress:** saved in the visitor's browser (`localStorage`, key `curatores:capitulum-1`). A part counts as done when every flashcard has been flipped, every case and field opened, or the quiz finished. The quiz also keeps the best score.
+- **Progress:** saved in the visitor's browser (`localStorage`, one key per chapter: `curatores:capitulum-1`, `curatores:capitulum-2`). A part counts as done when every flashcard has been flipped, every case, declension and field opened, or the quiz finished. The quiz also keeps the best score. A chapter's parts are listed in `CHAPTERS` in `assets/js/progress.js`; the page says which chapter it is with `<body data-chapter="…">`, and each card on the home page with its own `data-chapter`.
 - **Accessibility:**
   - Everything works from the keyboard, and the tab widgets use arrow keys.
   - `prefers-reduced-motion` gets a still version.
@@ -31,7 +32,7 @@ Node 22 or newer is needed for the tools and tests. The site itself needs nothin
 ```bash
 npm install          # dev tools only (puppeteer-core for screenshots)
 npm run serve        # http://127.0.0.1:4190
-npm test             # unit tests (quiz logic, form rules, progress store)
+npm test             # unit tests (quiz logic, form rules, progress store, chapter pages)
 ```
 
 You can also open `index.html` directly in a browser.
@@ -43,6 +44,7 @@ You can also open `index.html` directly in a browser.
 ```bash
 npm run shoot -- pages --out .shots                              # every page, all widths
 npm run shoot -- quiz --out .shots                               # plays through the quiz
+npm run shoot -- quiz --page capitulum-2.html --out .shots       # the same for Chapter II
 npm run shoot -- pages --url https://ivcuratores.org/ --out .shots       # check the live site
 ```
 
@@ -102,26 +104,26 @@ Until the key is set, FormSubmit carries the requests. The first request makes F
 
 | To change | Edit |
 | --- | --- |
-| Vocabulary cards, cases, etymology entries | `capitulum-1.html` (plain HTML) |
-| Quiz questions | `assets/js/quiz-data.js`. Wrap Latin in `*asterisks*` to italicise it; `answer` is the index of the correct option. `npm test` checks every question. |
+| Vocabulary cards, cases, declensions, sentences, etymology entries | `capitulum-1.html` or `capitulum-2.html` (plain HTML). If you add or remove flashcards, update the "28 words" fact and the "of 28 cards seen" count; `npm test` checks both. |
+| Quiz questions | `assets/js/quiz-data.js` (Chapter I) or `assets/js/quiz-data-2.js` (Chapter II). Wrap Latin in `*asterisks*` to italicise it; `answer` is the index of the correct option. `npm test` checks every question. |
 | Word explorer pairs (home page) | `PAIRS` in `assets/js/explore.js` |
 | Footer and icon sprite | `tools/partials/footer.html` and `tools/partials/sprite.html`, then run `node tools/partials.mjs` to copy them into every page |
 | Colours, type sizes, spacing | `assets/css/tokens.css` |
 | Team members | `team.html`: replace the role, name and introduction in each card, or copy a `<li class="member card">` block to add someone. Add contributors as `<li>Name</li>` in the empty `<ul class="contributors">`; the placeholder note hides itself once names are listed. |
 | Team photos | Put the image in `assets/img/team/` (portrait, about 800px wide) and replace the card's `<span class="member__initial">` line with `<img src="assets/img/team/photo.jpg" alt="Portrait of Name" loading="lazy">` |
 
-The header and mobile menu are repeated in each page. Change them in all four files.
+The header and mobile menu are repeated in each page. Change them in all five files.
 
-Capitula II–IV are shown as "In preparation" until their content is written.
+Capitula III and IV are shown as "In preparation" until their content is written.
 
 ## Project layout
 
 ```
-index.html, capitulum-1.html, contact.html, team.html
+index.html, capitulum-1.html, capitulum-2.html, contact.html, team.html
 assets/
   css/     tokens, base, components, motion, plus one stylesheet per page and fonts.css
   js/      site.js (header, menu, scroll reveals), explore.js, lesson.js, flashcards.js,
-           quiz.js + quiz-core.js + quiz-data.js, progress.js, contact.js + form-rules.js
+           quiz.js + quiz-core.js + quiz-data.js / quiz-data-2.js, progress.js, contact.js + form-rules.js
   fonts/   self-hosted woff2 files
   img/     logo (1x and 2x WebP), favicon, email/logo.png (PNG for email clients)
 tests/     node --test unit tests

@@ -2,10 +2,22 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const core = require('../assets/js/quiz-core.js');
 const questions = require('../assets/js/quiz-data.js');
+const questionsII = require('../assets/js/quiz-data-2.js');
 
 test('quiz data has fifteen valid questions', () => {
   assert.equal(questions.length, 15);
   assert.deepEqual(core.validateQuestions(questions), []);
+});
+
+test('Capitulum II quiz data has fifteen valid questions', () => {
+  assert.equal(questionsII.length, 15);
+  assert.deepEqual(core.validateQuestions(questionsII), []);
+});
+
+test('each quiz spreads its correct answers over all four positions', () => {
+  for (const quiz of [questions, questionsII]) {
+    assert.deepEqual([...new Set(quiz.map((q) => q.answer))].sort(), [0, 1, 2, 3]);
+  }
 });
 
 test('first question is the original puella question with Girl correct', () => {
