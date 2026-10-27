@@ -22,6 +22,8 @@ const TYPES = {
   '.woff2': 'font/woff2'
 };
 const COMPRESSIBLE = new Set(['.html', '.css', '.js', '.svg']);
+// Vercel serves the Web Analytics script in production; locally it is an empty stand-in.
+const STUBS = { '/_vercel/insights/script.js': '' };
 
 // Just enough of Vercel's request/response helpers for our handlers.
 async function runFunction(handler, req, res) {
@@ -51,6 +53,10 @@ createServer(async (req, res) => {
   const path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
   if (FUNCTIONS[path]) {
     await runFunction(FUNCTIONS[path], req, res);
+    return;
+  }
+  if (Object.hasOwn(STUBS, path)) {
+    res.writeHead(200, { 'Content-Type': TYPES['.js'] }).end(STUBS[path]);
     return;
   }
   const file = normalize(join(ROOT, path.endsWith('/') ? path + 'index.html' : path));

@@ -44,6 +44,12 @@ for (const chapter of CHAPTERS) {
   });
 }
 
+test('every page loads Vercel Web Analytics', () => {
+  for (const page of ['index.html', 'capitulum-1.html', 'capitulum-2.html', 'contact.html', 'team.html']) {
+    assert.match(read(page), /<script defer src="\/_vercel\/insights\/script\.js"><\/script>/, page);
+  }
+});
+
 test('the course page scopes each open chapter card to its store', () => {
   const html = read('index.html');
   for (const chapter of CHAPTERS) {
